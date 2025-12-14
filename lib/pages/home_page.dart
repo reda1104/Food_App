@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
+import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/widgets/food_grid_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,7 +35,17 @@ class HomePage extends StatelessWidget {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: food.length,
-              itemBuilder: (context, index) => GridFoodItem(foodIndex: index),
+              itemBuilder: (context, index) => InkWell(
+                child: GridFoodItem(foodIndex: index),
+                onTap: () => Navigator.of(context)
+                    .pushNamed('/food-details', arguments: index)
+                    .then((value) {
+                      setState(() {});
+                      debugPrint(
+                        "Tha data returned on the home page is $value",
+                      );
+                    }),
+              ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: isLandScape ? 4 : 2,
                 mainAxisSpacing: size.height * 0.02,

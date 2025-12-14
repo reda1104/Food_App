@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_delivery/pages/bottom_nav_bar_page.dart';
+import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/pages/home_page.dart';
 
 void main() {
@@ -32,7 +33,10 @@ class MyApp extends StatelessWidget {
       ),
 
       debugShowCheckedModeBanner: false,
-      home: BottomNavBarPage(),
+      routes: {
+        '/': (context) => const BottomNavBarPage(),
+        '/food-details': (context) => const FoodDetailsPage(),
+      },
     );
   }
 }

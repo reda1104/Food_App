@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
+import 'package:food_delivery/widgets/favourite_button.dart';
 
 class GridFoodItem extends StatefulWidget {
   final int foodIndex;
@@ -35,25 +36,26 @@ class _GridFoodItemState extends State<GridFoodItem> {
                   ),
                   Align(
                     alignment: Alignment.topRight,
-                    child: InkWell(
-                      child: food[widget.foodIndex].isFavourite
-                          ? Icon(
-                              size: constraints.maxHeight * 0.17,
-                              Icons.favorite,
-                              color: Theme.of(context).primaryColor,
-                            )
-                          : Icon(
-                              size: constraints.maxHeight * 0.17,
-                              Icons.favorite_border,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                      onTap: () => setState(() {
-                        food[widget.foodIndex] = food[widget.foodIndex]
-                            .copyWith(
-                              isFavourite: !food[widget.foodIndex].isFavourite,
-                            );
-                      }),
-                    ),
+                    child: FavouriteButton(index: widget.foodIndex),
+                    // child: InkWell(
+                    //   child: food[widget.foodIndex].isFavourite
+                    //       ? Icon(
+                    //           size: constraints.maxHeight * 0.17,
+                    //           Icons.favorite,
+                    //           color: Theme.of(context).primaryColor,
+                    //         )
+                    //       : Icon(
+                    //           size: constraints.maxHeight * 0.17,
+                    //           Icons.favorite_border,
+                    //           color: Theme.of(context).primaryColor,
+                    //         ),
+                    //   onTap: () => setState(() {
+                    //     food[widget.foodIndex] = food[widget.foodIndex]
+                    //         .copyWith(
+                    //           isFavourite: !food[widget.foodIndex].isFavourite,
+                    //         );
+                    //   }),
+                    // ),
                   ),
                 ],
               ),

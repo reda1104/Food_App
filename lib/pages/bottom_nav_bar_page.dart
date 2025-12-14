@@ -10,8 +10,28 @@ class BottomNavBarPage extends StatefulWidget {
   State<BottomNavBarPage> createState() => _BottomNavBarPageState();
 }
 
-class _BottomNavBarPageState extends State<BottomNavBarPage> {
+class _BottomNavBarPageState extends State<BottomNavBarPage>
+    with WidgetsBindingObserver {
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    debugPrint(state.toString());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -32,7 +52,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
       drawer: const Drawer(child: Center(child: Text("I am in"))),
       body: bodyOptions[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
