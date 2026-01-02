@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -90,7 +91,7 @@ class AccountPage extends StatelessWidget {
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: AssetImage("assets/images/profile.jpeg"),
+          image: AssetImage(AppAssets.profilePic),
           alignment: Alignment(0, -0.5),
           fit: BoxFit.cover,
         ),

@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const BottomNavBarPage(),
-        '/food-details': (context) => const FoodDetailsPage(),
+        FoodDetailsPage.routeName: (context) => const FoodDetailsPage(),
       },
     );
   }

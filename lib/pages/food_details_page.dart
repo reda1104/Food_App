@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
+import 'package:food_delivery/ui_models/food_details_args.dart';
 import 'package:food_delivery/widgets/favourite_button.dart';
 import 'package:food_delivery/widgets/food_details/food_item_counter.dart';
 import 'package:food_delivery/widgets/food_details/property_item.dart';
@@ -7,11 +8,14 @@ import 'package:food_delivery/widgets/food_details/top_banner.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   const FoodDetailsPage({super.key});
+  static const String routeName = '/food-details';
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final int index = ModalRoute.of(context)!.settings.arguments as int;
+    final FoodDetailsArgs foodArgs =
+        ModalRoute.of(context)!.settings.arguments as FoodDetailsArgs;
+    final int index = foodArgs.foodIndex;
     return Scaffold(
       // appBar: AppBar(),
       body: SafeArea(

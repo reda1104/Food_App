@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
+import 'package:food_delivery/ui_models/food_details_args.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 import 'package:food_delivery/widgets/favourite_button.dart';
 import 'package:food_delivery/widgets/favourite_item.dart';
 
@@ -27,7 +29,7 @@ class _FavouritePageState extends State<FavouritePage> {
           children: [
             SizedBox(height: 80),
             Image.asset(
-              "assets/images/emptybox.png",
+              AppAssets.emptyBox,
               height: isLandScape ? size.height * 0.32 : size.height * 0.35,
             ),
             SizedBox(height: size.height * 0.02),
@@ -45,15 +47,12 @@ class _FavouritePageState extends State<FavouritePage> {
       child: ListView.builder(
         itemCount: favouriteFood.length,
         itemBuilder: (context, index) {
+          int targetedIndex = food.indexOf(favouriteFood[index]);
           return InkWell(
             onTap: () => Navigator.of(context)
-                .push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      int targetedIndex = food.indexOf(favouriteFood[index]);
-                      return FoodDetailsPage();
-                    },
-                  ),
+                .pushNamed(
+                  FoodDetailsPage.routeName,
+                  arguments: FoodDetailsArgs(foodIndex: targetedIndex),
                 )
                 .then((value) {
                   setState(() {});
